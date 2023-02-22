@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      var status = `<%- JSON.stringify(status) %>`;
+      if (JSON.parse(status) == "verified") {
+        if (confirm("Password updated successfully")) {
+          window.location.href = "http://localhost:3000/";
+        }
+      }
+      if (JSON.parse(status) == "password") {
+        alert("Password must have 1 caps 1 small letter , number, special charecter and should be min 8 characters")
+      }
+      
+    </script>
+  </head>
+  <body>
+    <h1 style="text-align: center;"><%= email%></h1>
+    <form style="text-align: center;" action="" method="post">
+      <input
+      style="padding: 10px;margin-top: 10px;"
+        type="password"
+        name="password"
+        id="password"
+        required
+        placeholder="Enter new password"
+      /><br />
+      <input style="padding: 10px;margin-top: 10px;background-color: black;color: aliceblue;" type="submit" value="submit" />
+      <h3>Password must have 1 caps 1 small letter , number, special charecter and should be min 8 characters</h3>
+    </form>
+  </body>
+</html>
