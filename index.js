@@ -67,6 +67,10 @@ app.post("/signup", async (req, res) => {
     res.send({ status: "error" });
   }
 });
+app.get("/", async (req, res) => {
+    res.send("hi");
+  
+});
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -174,9 +178,6 @@ app.post("/resetpassword/:id/:token", async (req, res) => {
         password
       )
     ) {
-      // res.status(400).send({
-      //   message: "Password strength",
-      // });
     res.render("index", { email: verify.email, status: "password" });
 
       return;
