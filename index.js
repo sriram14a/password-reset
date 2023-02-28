@@ -67,9 +67,8 @@ app.post("/signup", async (req, res) => {
     res.send({ status: "error" });
   }
 });
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
     res.send("hi");
-  
 });
 
 app.post("/login", async (req, res) => {
