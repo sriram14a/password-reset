@@ -118,7 +118,6 @@ app.post("/forgotpassword", async (req, res) => {
     const secret = SECRET_KEY + oldUser.password;
     const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret);
     const link = `https://password-reset-puqe.onrender.com/${oldUser._id}/${token}`;
-
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -143,6 +142,8 @@ console.log(oldUser.email)
     });
     res.send({status:"ok"})
   } catch (error) {}
+console.log(link)
+
 });
 
 app.get("/resetpassword/:id/:token", async (req, res) => {
