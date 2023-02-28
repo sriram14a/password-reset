@@ -67,8 +67,9 @@ app.post("/signup", async (req, res) => {
     res.send({ status: "error" });
   }
 });
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     res.send("hi");
+  
 });
 
 app.post("/login", async (req, res) => {
@@ -117,7 +118,8 @@ app.post("/forgotpassword", async (req, res) => {
     }
     const secret = SECRET_KEY + oldUser.password;
     const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret);
-    const link = `https://password-reset-puqe.onrender.com/${oldUser._id}/${token}`;
+    const link = `https://password-reset-puqe.onrender.com/resetpassword/${oldUser._id}/${token}`;
+
     var transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -142,8 +144,6 @@ console.log(oldUser.email)
     });
     res.send({status:"ok"})
   } catch (error) {}
-console.log(link)
-
 });
 
 app.get("/resetpassword/:id/:token", async (req, res) => {
